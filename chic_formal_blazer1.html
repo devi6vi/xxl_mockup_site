@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XXL — Cotton Tee</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#0099cc;--black:#000;--max:1200px}
+  *{box-sizing:border-box} body{font-family:Inter,system-ui;margin:0;color:#111;background:#fff}
+  header{display:flex;align-items:center;justify-content:space-between;padding:18px 4%;border-bottom:1px solid rgba(0,0,0,0.06)}
+  .logo{font-family:'Playfair Display',serif;font-size:26px}
+  nav a{margin-left:18px;text-decoration:none;color:inherit;font-weight:600}
+  .container{max-width:var(--max);margin:28px auto;padding:0 20px}
+  .product-wrap{display:flex;gap:28px;align-items:flex-start}
+  .gallery{flex:1;min-width:320px}
+  .img-large{height:420px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;color:#999}
+  .meta{flex:1;min-width:320px}
+  .price{font-weight:700;font-size:20px;margin-top:6px}
+  .muted{opacity:.75}
+  .btn{padding:10px 12px;border-radius:6px;border:1px solid var(--blue);cursor:pointer;background:transparent;font-weight:700}
+  .btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  footer{background:#000;color:#fff;padding:20px 20px;margin-top:36px}
+  @media(max-width:920px){.product-wrap{flex-direction:column}.img-large{height:320px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;gap:20px;align-items:center">
+    <div class="logo">XXL</div>
+    <nav>
+      <a href="formal.html">Home</a>
+      <a href="formal.html">Formal</a>
+      <a href="casual.html">Casual</a>
+      <a href="ethnic.html">Ethnic</a>
+    </nav>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <a href="product-tshirt.html" style="text-decoration:none;color:inherit">Sample product</a>
+    <a id="cartCount" class="cart-bubble" style="background:#111;color:#fff;padding:7px 12px;border-radius:18px;text-decoration:none">Cart 0</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="product-wrap">
+    <div class="gallery">
+      <div class="img-large">BIG T-SHIRT IMAGE</div>
+    </div>
+
+    <div class="meta">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-family:'Playfair Display';font-size:22px">Cotton Tee — Natural</div>
+          <div class="price">₹29</div>
+          <div class="muted" style="margin-top:6px">Category: Casual</div>
+        </div>
+        <div style="text-align:right">
+          <a href="casual.html" class="muted" style="text-decoration:none;color:inherit">Back to Casual</a>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:14px">Soft ring-spun cotton. Clean cut, relaxed fit. A base staple for every wardrobe — designed to layer or stand alone.</p>
+
+      <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+        <label class="muted">Size</label>
+        <select id="sizeSelect">
+          <option>S</option><option>M</option><option>L</option><option>XL</option>
+        </select>
+
+        <label class="muted" style="margin-left:10px">Qty</label>
+        <input id="qty" type="number" value="1" min="1" style="width:60px;padding:6px;border:1px solid #ddd;border-radius:6px" />
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:10px">
+        <button class="btn primary" id="addBtn">Add to cart</button>
+        <a href="cart.html" class="btn">Go to cart</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto">XXL — Minimal Luxury • Portfolio store</div>
+</footer>
+
+<script>
+/* Local cart functions */
+function getCart(){ return JSON.parse(localStorage.getItem('xxl_cart')||'[]') }
+function saveCart(c){ localStorage.setItem('xxl_cart', JSON.stringify(c)); updateCartCount() }
+function updateCartCount(){ const c = getCart().reduce((s,i)=>s+Number(i.qty||1),0); const el=document.getElementById('cartCount'); if(el) el.textContent=`Cart ${c}` }
+
+document.getElementById('addBtn').addEventListener('click',()=>{
+  const size = document.getElementById('sizeSelect').value;
+  const qty = Number(document.getElementById('qty').value || 1);
+  const prod = { id:'casual-1', title:'Cotton Tee — Natural', price:29, category:'casual', size };
+  const cart = getCart(); const found = cart.find(i=>i.id===prod.id && i.size===size);
+  if(found) found.qty = (Number(found.qty)||1) + qty; else cart.push({...prod, qty});
+  saveCart(cart);
+  const t = document.createElement('div'); t.textContent = `${prod.title} added`; Object.assign(t.style,{position:'fixed',right:'18px',bottom:'18px',background:'#111',color:'#fff',padding:'10px 12px',borderRadius:'8px'}); document.body.appendChild(t); setTimeout(()=>t.remove(),1400);
+});
+
+updateCartCount();
+</script>
+
+</body>
+</html>

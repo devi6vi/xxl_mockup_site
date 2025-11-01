@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXL | Minimalist Luxury Fashion</title>
+<style>
+/* ========== GLOBAL STYLES ========== */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #111;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+h1, h2, h3 { margin: 0; }
+button { cursor: pointer; }
+
+/* ========== HEADER ========== */
+
+header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 18px 40px;
+  gap: 80px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+.navbar {
+  display: flex;
+  gap: 40px;
+}
+
+.navbar a {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #0099cc;
+}
+
+
+/* ========== HERO SECTION ========== */
+.hero {
+  height: 100vh;
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+    url('wallpaper.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;          /* vertically center content */
+  justify-content: space-between; /* space between text and image */
+  padding: 0 8%;                /* balanced left-right spacing */
+  color: white;
+  gap: 40px;                    /* optional spacing between sides */
+}
+
+/* left text section */
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* right image or visual block */
+.hero-image {
+  width: 45%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 60px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 18px;
+  max-width: 500px;
+  margin-bottom: 40px;
+  color: #f0f0f0;
+}
+.hero button {
+  padding: 14px 28px;
+  background-color: #0099cc;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+.hero button:hover {
+  background-color: #b38600;
+  transform: translateY(-2px);
+}
+
+/* ========== STORY SECTION ========== */
+.story {
+  padding: 120px 80px;
+  background-color: #fff;
+  text-align: center;
+}
+.story h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #000;
+}
+.story p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.7;
+  font-size: 18px;
+  color: #444;
+}
+
+/* ========== CATEGORY SECTIONS ========== */
+.category {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+.category:nth-child(even) {
+  flex-direction: row-reverse;
+  background-color: #f9f9f9;
+}
+.category-image {
+  width: 100%;
+  height: 500px; /* Adjust this as needed for your layout */
+  object-fit: cover; /* Ensures the image is cropped properly */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.category .info {
+  width: 45%;
+}
+.category h3 {
+  font-size: 40px;
+  color: #000;
+}
+.category p {
+  margin-top: 20px;
+  font-size: 17px;
+  color: #555;
+  line-height: 1.6;
+}
+.category a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 26px;
+  background-color: #000;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.category a:hover { background-color: #b38600; }
+
+@media (max-width: 768px) {
+  .category-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .hero-text, .hero-image {
+    max-width: 100%;
+  }
+}
+
+
+
+/* ========== FOOTER ========== */
+footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 40px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- ======= HEADER ======= -->
+<header>
+  <div class="nav-container">
+    <div class="logo">XXL</div>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="formal.html">Formal</a>
+      <a href="casual.html">Casual</a>
+      <a href="ethnic.html">Ethnic</a>
+      <a href="ocassional.html">Ocassional</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="hero">
+  <h1>Elegance in Every Stitch</h1>
+  <p>Empowering women with style that celebrates every curve</p>
+ 
+</section>
+
+<section class="story">
+  <h2>Our Story</h2>
+  <p>
+   XXL is a fashion-forward brand designed exclusively for the plus community. We believe style has no size limit, every body deserves to look and feel luxurious. Our collection blends comfort, confidence, and modern trends, crafted specially to flatter curvy silhouettes without compromising on fit or fashion.
+  </p>
+</section>
+
+
+<footer>
+  © 2025 XXL. All Rights Reserved. | Designed for Modern Curves.
+</footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+  });
+});
+</script>
+</body>
+</html>

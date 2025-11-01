@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XXL — Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#0099cc;--gold:#b38600;--black:#000;--white:#fff;--max:1200px}
+  *{box-sizing:border-box} body{font-family:Inter,system-ui; margin:0;color:#111;background:#fff}
+  header{display:flex;align-items:center;justify-content:space-between;padding:18px 4%;border-bottom:1px solid rgba(0,0,0,0.06)}
+  .logo{font-family:'Playfair Display',serif;font-size:26px;letter-spacing:2px}
+  nav a{margin-left:18px;text-decoration:none;color:inherit;font-weight:600}
+  .container{max-width:var(--max);margin:28px auto;padding:0 20px}
+  .cart-list{display:flex;flex-direction:column;gap:12px}
+  .line{display:flex;gap:12px;align-items:center;border:1px solid rgba(0,0,0,0.06);padding:12px;border-radius:6px}
+  .thumb{width:90px;height:90px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;color:#999}
+  .qty{display:flex;align-items:center;gap:8px}
+  .btn{padding:8px 10px;border-radius:6px;border:1px solid var(--blue);cursor:pointer;background:transparent;font-weight:700}
+  .btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .muted{opacity:.75}
+  footer{background:#000;color:#fff;padding:20px 20px;margin-top:36px}
+  @media(max-width:760px){.line{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;gap:20px;align-items:center">
+    <div class="logo">XXL</div>
+    <nav>
+      <a href="formal.html">Home</a>
+      <a href="formal.html">Formal</a>
+      <a href="casual.html">Casual</a>
+      <a href="ethnic.html">Ethnic</a>
+    </nav>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <a href="product-tshirt.html" style="text-decoration:none;color:inherit">Sample product</a>
+    <a id="cartCount" class="cart-bubble" style="background:#111;color:#fff;padding:7px 12px;border-radius:18px;text-decoration:none">Cart 0</a>
+  </div>
+</header>
+
+<main class="container">
+  <h2 style="font-family:'Playfair Display'">Your Cart</h2>
+  <div id="cartWrap" style="margin-top:18px">
+    <!-- cart lines -->
+  </div>
+
+  <div style="margin-top:20px;display:flex;justify-content:flex-end;gap:12px">
+    <button class="btn" onclick="clearCart()">Clear</button>
+    <button class="btn primary" onclick="checkout()">Checkout</button>
+  </div>
+</main>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto">XXL — Minimal Luxury • Portfolio store</div>
+</footer>
+
+<script>
+/* Cart page logic */
+function getCart(){ return JSON.parse(localStorage.getItem('xxl_cart')||'[]') }
+function saveCart(c){ localStorage.setItem('xxl_cart', JSON.stringify(c)); updateCartCount(); renderCart() }
+function updateCartCount(){ const c = getCart().reduce((s,i)=>s+Number(i.qty||1),0); const el=document.getElementById('cartCount'); if(el) el.textContent=`Cart ${c}` }
+
+function renderCart(){
+  const wrap = document.getElementById('cartWrap'); const items = getCart();
+  wrap.innerHTML = '';
+  if(!items.length){ wrap.innerHTML = '<div class="muted">Your cart is empty.</div>'; return }
+  let total=0;
+  items.forEach(item=>{
+    total += (item.price * (item.qty||1));
+    const div = document.createElement('div'); div.className='line';
+    div.innerHTML = `
+      <div class="thumb">IMG</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>${item.title}</strong><div class="muted">₹${item.price}</div></div>
+          <div style="text-align:right">
+            <div class="qty">
+              <button class="btn" onclick="changeQty('${item.id}', -1)">-</button>
+              <span style="min-width:28px;display:inline-block;text-align:center">${item.qty}</span>
+              <button class="btn" onclick="changeQty('${item.id}', 1)">+</button>
+            </div>
+            <div style="margin-top:8px"><button class="btn" onclick="removeItem('${item.id}')">Remove</button></div>
+          </div>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(div);
+  });
+  const summary = document.createElement('div'); summary.style.marginTop='14px'; summary.innerHTML = `<div style="text-align:right;font-weight:700">Total: ₹${total}</div>`; wrap.appendChild(summary);
+}
+
+function changeQty(id, delta){
+  const cart = getCart(); const it = cart.find(i=>i.id===id); if(!it) return;
+  it.qty = Math.max(0, (Number(it.qty)||0) + delta);
+  if(it.qty===0) { const idx = cart.findIndex(x=>x.id===id); cart.splice(idx,1); }
+  saveCart(cart);
+}
+
+function removeItem(id){ const cart = getCart(); const idx = cart.findIndex(x=>x.id===id); if(idx>-1) cart.splice(idx,1); saveCart(cart); }
+
+function clearCart(){ if(!confirm('Clear cart?')) return; localStorage.removeItem('xxl_cart'); updateCartCount(); renderCart() }
+
+function checkout(){ alert('This is a portfolio demo — integrate payment later.'); }
+
+updateCartCount(); renderCart();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXL | Ethnic Collection</title>
+<style>
+body { margin: 0; font-family: 'Helvetica Neue', sans-serif; background: #fff; color: #111; }
+header { width: 100%; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 999; }
+.nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: flex-start; align-items: center; padding: 18px 40px; gap: 80px; }
+.logo { font-size: 26px; font-weight: 600; }
+.navbar { display: flex; gap: 40px; }
+nav a {
+  text-decoration: none;   /* removes the underline */
+  color: black;            /* sets the text color */
+  font-weight: 500;
+  margin: 0 20px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #b38600;          /* adds luxury gold hover effect */
+}
+
+.hero {
+  height: 80vh;
+  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),
+              url('https://images.unsplash.com/photo-1589810264340-7d0e0a96a67d?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+  color: #fff;
+}
+.hero h1 { font-size: 56px; }
+.hero p { font-size: 18px; max-width: 600px; color: #eee; }
+
+.products { max-width: 1200px; margin: 100px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 0 40px; }
+.product-card { border: 1px solid #eee; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.3s; }
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+.product-card img { width: 100%; height: 360px; object-fit: cover; }
+.product-info { padding: 20px; text-align: center; }
+.product-info h3 { font-size: 18px; color: #000; }
+.product-info p { font-size: 15px; color: #555; margin: 8px 0; }
+.price { color: #b38600; font-weight: 600; }
+footer { background: #000; color: #fff; text-align: center; padding: 40px 0; font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-container">
+    <div class="logo">XXL</div>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="formal.html">Formal</a>
+      <a href="casual.html">Casual</a>
+      <a href="ethnic.html">Ethnic</a>
+      <a href="ocassional.html"> Ocassional</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="products">
+  <div class="product-card">
+    <img src="ethnic wear (1).jpg">
+    <div class="product-info">
+      <h3> Kurta Set</h3>
+      <p>Organic chiffon with gold Highlights</p>
+      <p class="price">₹5,999</p>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="ethnic wear (2).jpg">
+    <div class="product-info">
+      <h3> Flared Kurta Set</h3>
+      <p>Handcrafted to perfection</p>
+      <p class="price">₹7,899</p>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="ethnic wear (6).jpg">
+    <div class="product-info">
+      <h3>Festive Dress</h3>
+      <p>Chiffon blend, Flower Embroiderry</p>
+      <p class="price">₹6,499</p>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 XXL | Timeless Ethnic Luxury</footer>
+</body>
+</html>
